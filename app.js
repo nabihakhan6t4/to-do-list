@@ -1,18 +1,30 @@
-let inputs = document.getElementById("inp");
-let text = document.querySelector(".text");
+document.addEventListener("DOMContentLoaded", function() {
+    let inputField = document.getElementById("inp");
+    let taskList = document.getElementById("task-list");
 
-function Add(){
-    if(inputs.value == ""){
-        alert("please enter task")
-    }else{
-        let newEle = document.createElement("ul");
-        newEle.innerHTML=`${inputs.value} <i class="fa-solid fa-trash"></i>`;
-        text.appendChild(newEle);
-        inputs.value="";
-        newEle.querySelector("i").addEventListener("click" , remove);
-        function remove(){
-            newEle.remove()
+    function addTask() {
+        if (inputField.value.trim() === "") {
+            alert("Please enter a task");
+            return;
         }
 
+        let listItem = document.createElement("li");
+        listItem.innerHTML = `${inputField.value.trim()} <i class="fa-solid fa-trash"></i>`;
+        
+        listItem.querySelector("i").addEventListener("click", function() {
+            listItem.remove();
+        });
+
+        taskList.appendChild(listItem);
+        inputField.value = "";
+        inputField.focus();
     }
-}
+
+    document.querySelector("button").addEventListener("click", addTask);
+    inputField.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            addTask();
+        }
+    });
+});
+
