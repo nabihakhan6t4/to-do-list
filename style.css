@@ -35,7 +35,7 @@ h1 {
 }
 
 input {
-    width: calc(100% - 70px);
+    width: calc(100% - 210px); /* Adjusted to fit three buttons */
     padding: 8px;
     border: 2px solid #008080; /* Teal Border Color */
     border-radius: 4px;
@@ -57,6 +57,11 @@ button {
 
 button:hover {
     background: #006666; 
+}
+
+button:disabled {
+    background: #cccccc; 
+    cursor: not-allowed;
 }
 
 .text ul {
